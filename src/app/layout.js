@@ -1,5 +1,18 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
+import Link from "next/link";
+import { GoHomeFill } from "react-icons/go";
+import { ImProfile } from "react-icons/im";
+import { LuNewspaper } from "react-icons/lu";
+import { MdAccountBox } from "react-icons/md";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +31,42 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <header className="flex items-center p-6 gap-4 h-18 bg-gray-700">
+            <div className="flex">
+              <nav className="flex gap-4 text-3xl">
+                <Link href="/">
+                  <GoHomeFill />
+                </Link>
+                <Link href="/profile">
+                  <MdAccountBox />
+                </Link>
+                <Link href="/feed">
+                  <LuNewspaper />
+                </Link>
+              </nav>
+            </div>
+            <div className="flex justify-end w-full gap-4">
+              <SignedOut>
+                <SignInButton />
+                <SignUpButton>
+                  <button className="bg-pink-600 text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+                    Sign Up
+                  </button>
+                </SignUpButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
+          </header>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
