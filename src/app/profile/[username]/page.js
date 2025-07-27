@@ -9,9 +9,7 @@ export default async function UserPage({ params }) {
   const userProfile = res.rows[0];
   return (
     <div>
-      <div>
-        <OtherUserProfile profile={userProfile} />
-      </div>
+      <OtherUserProfile profile={userProfile} />
     </div>
   );
 }

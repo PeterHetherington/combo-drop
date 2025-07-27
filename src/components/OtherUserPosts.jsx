@@ -16,7 +16,7 @@ export default async function UserPosts({ username }) {
   return (
     <>
       {posts ? (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 min-w-100">
           {posts.map((post) => (
             <PostTile
               key={post.id}
