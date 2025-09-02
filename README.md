@@ -98,7 +98,7 @@ NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/profile
 
 Schema for the database can be found in db.sql
 
-Make sure to add .env to your ,gitignore file
+Make sure to add .env to your .gitignore file
 
 Resources:
 
